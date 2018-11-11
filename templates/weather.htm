@@ -1,0 +1,33 @@
+<div ng-controller="WeatherController" ng-app="app" id="weatherpage">
+
+    <form>
+        <div class="centerbox one">
+            <label for="cityname">Enter name of a city and press search</label>
+            <input type="text" ng-model="city.name" name="city" id="cityname"> </input>
+        </div>
+
+
+        <div class="centerbox two">
+            <button ng-click="showForecast($event)" ng-disabled="isDisabled" ng-model="isDisabled" id="searche"> Search
+            </button>
+        </div>
+
+    </form>
+    <div ng-repeat="forecast in cityForecast"  class="centerbox">
+        <p>Sunrise: {{forecast.astro.sunrise}}</p>
+        <p>Sunset: {{forecast.astro.sunset}}</p>
+        <p>Date: {{forecast.date}}</p>
+        <p>Max temp: {{forecast.day.maxtemp_c}}</p>
+        <p>Min temp: {{forecast.day.mintemp_c}}</p>
+        <p>Condition: {{forecast.day.condition.text}}</p>
+        <img src="http:{{forecast.day.condition.icon}}">
+    </div>
+    <div class="centerbox three">
+        <p> Last searches: <p>
+        <div ng-repeat="result in allResults track by $index">
+            City <a href="" style="cursor: pointer" ng-click="showResults(result.city)" ng-model="city.name">
+                {{result.city}}  </a> <span>{{result.date}}</span>
+        </div>
+    </div>
+
+</div>
